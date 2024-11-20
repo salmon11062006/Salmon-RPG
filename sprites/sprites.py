@@ -8,4 +8,4 @@ class Generic(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(topleft=pos)
         self.z = z
         self.hitbox = self.rect.copy().inflate(-self.rect.width * 0.1, -self.rect.height * 0.1)
-
+        self.hitbox.topleft = self.rect.topleft

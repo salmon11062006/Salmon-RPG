@@ -50,6 +50,6 @@ class Salmonella(State):
         self.all_sprites.custom_draw(self.player)
         self.all_sprites.update(dt)
 
-        for sprite in self.collision_sprites:
+        for sprite in self.all_sprites:
             pygame.draw.rect(self.game.WINDOW, (255, 0, 0), sprite.rect, 2)
 

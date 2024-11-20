@@ -11,8 +11,8 @@ class Camera(pygame.sprite.Group):
         self.offset = pygame.math.Vector2()
         self.y_min = 0
         self.x_min = 0
-        l = 100
-        t = 100
+        l = 200
+        t = 200
         w = self.display_surface.get_size()[0] - 400
         h = self.display_surface.get_size()[1] - 200
         self.camera_rect = pygame.Rect(l, t, w, h)

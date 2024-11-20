@@ -46,7 +46,7 @@ class Player(pygame.sprite.Sprite):
         self.frame_index = 0
         self.status = 'right_idle'
         self.idle_statuses = ['right_idle', 'left_idle']
-        self.image = pygame.transform.scale(self.animations[self.status][self.frame_index], (100,100))
+        self.image = pygame.transform.scale(self.animations[self.status][self.frame_index], (32,32))
 
         self.rect = self.image.get_rect(center=pos)
         self.direction = pygame.math.Vector2()
@@ -133,3 +133,6 @@ class Player(pygame.sprite.Sprite):
         self.check_idle()
         self.move(dt)
         self.animate(dt)
+        
+        for sprite in self.collision_sprites:
+            pygame.draw.rect(self.game.WINDOW, (255, 0, 0), sprite.rect, 2)
