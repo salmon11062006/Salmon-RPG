@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="25" height="25" tilewidth="32" tileheight="32" infinite="0" nextlayerid="13" nextobjectid="35">
+ <tileset firstgid="1" source="[A]Grass_pipo.tsx"/>
+ <tileset firstgid="529" source="[Base]BaseChip_pipo.tsx"/>
+ <layer id="1" name="Ground" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJztwwEJAAAMA6C9f6hVW46Dgr2kqqq+Ogiu1NA=
+  </data>
+ </layer>
+ <objectgroup id="12" name="Collision">
+  <object id="30" x="-2" y="-1" width="8" height="800"/>
+  <object id="31" x="-1" y="790" width="801" height="7"/>
+  <object id="32" x="793" y="-6" width="5" height="803"/>
+  <object id="33" x="0" y="-4" width="800" height="7"/>
+  <object id="34" x="822" y="-36"/>
+ </objectgroup>
+ <layer id="11" name="Trees" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgF5ABJJgYGKSbamqEIlFOi0A5qmEFrQI2wJASGQjiMgtG0AAKjYTAKqAnISU+k6iEnPY2mQeoAAHlfA3M=
+  </data>
+ </layer>
+ <objectgroup id="7" name="Player">
+  <object id="23" name="Game Start" x="385" y="339">
+   <point/>
+  </object>
+ </objectgroup>
+</map>
