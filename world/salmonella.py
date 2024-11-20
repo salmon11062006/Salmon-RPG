@@ -15,7 +15,6 @@ class Salmonella(State):
         self.interaction_sprites = pygame.sprite.Group()
         self.collision_sprites = pygame.sprite.Group()
         self.map = True
-
         self.setup()
 
     def setup(self):
