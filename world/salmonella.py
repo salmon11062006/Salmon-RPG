@@ -11,7 +11,7 @@ import config
 class Salmonella(State):
     def __init__(self, game, name):
         State.__init__(self, game, name)
-        self.all_sprites = Camera(400, 400)
+        self.all_sprites = Camera(100, 100)
         self.interaction_sprites = pygame.sprite.Group()
         self.collision_sprites = pygame.sprite.Group()
         self.map = True
@@ -29,7 +29,7 @@ class Salmonella(State):
             Generic((x*32, y*32), transformed_surf, self.all_sprites, config.layers['trees'])
 
         for x, y, surf in map_data.get_layer_by_name('Trees').tiles():
-            Generic((x*32, y*32), pygame.Surface((32,32)), self.collision_sprites, config.layers['trees'])
+            Generic((x*32, y*32), pygame.Surface((32,32)), self.collision_sprites)
 
         for obj in map_data.get_layer_by_name('Player'):
             if obj.name == 'Game Start':

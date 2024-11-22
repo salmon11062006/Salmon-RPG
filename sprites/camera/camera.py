@@ -12,9 +12,9 @@ class Camera(pygame.sprite.Group):
         self.y_min = 0
         self.x_min = 0
         l = 200
-        t = 200
-        w = self.display_surface.get_size()[0] - 400
-        h = self.display_surface.get_size()[1] - 200
+        t = 100
+        w = self.display_surface.get_size()[0]
+        h = self.display_surface.get_size()[1]
         self.camera_rect = pygame.Rect(l, t, w, h)
 
     def custom_draw(self, player):

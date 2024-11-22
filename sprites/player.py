@@ -10,8 +10,8 @@ class Player(pygame.sprite.Sprite):
         self.name = name
         self.z = config.layers['player']
         self.stats = stats
-        self.base_tiles = Tilesheet('assets/soldier/Soldier-Idle.png', 100, 100, 2, 6)
-        self.walk_tiles = Tilesheet('assets/soldier/Soldier-Walk.png', 100, 100, 2, 8)
+        self.base_tiles = Tilesheet('assets/soldier/Soldier-Idle.png', 50, 50, 2, 6)
+        self.walk_tiles = Tilesheet('assets/soldier/Soldier-Walk.png', 50, 50, 2, 8)
         self.animations = {
             'right_idle': [self.base_tiles.get_tile(0, 0),
                         self.base_tiles.get_tile(1, 0),
@@ -133,6 +133,6 @@ class Player(pygame.sprite.Sprite):
         self.check_idle()
         self.move(dt)
         self.animate(dt)
-        
+
         for sprite in self.collision_sprites:
             pygame.draw.rect(self.game.WINDOW, (255, 0, 0), sprite.rect, 2)
