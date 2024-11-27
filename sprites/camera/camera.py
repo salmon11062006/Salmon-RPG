@@ -1,38 +1,38 @@
 import pygame
 import config
-
 class Camera(pygame.sprite.Group):
-
-    def __init__(self, y_max, x_max):
+    def __init__(self):
         super().__init__()
-        self.y_max = y_max 
-        self.x_max = x_max 
         self.display_surface = pygame.display.get_surface()
         self.offset = pygame.math.Vector2()
-        self.y_min = 0
-        self.x_min = 0
-        l = 200
-        t = 100
-        w = self.display_surface.get_size()[0]
-        h = self.display_surface.get_size()[1]
-        self.camera_rect = pygame.Rect(l, t, w, h)
+        self.camera_borders = {'left': 200, 'right': 200, 'top': 100, 'bottom': 100}
+        l = self.camera_borders['left']
+        t = self.camera_borders['top']
+        w = self.display_surface.get_size()[0] - (self.camera_borders['left'] + self.camera_borders['right'])
+        h = self.display_surface.get_size()[1] - (self.camera_borders['top'] + self.camera_borders['bottom'])
+        self.camera_rect = pygame.Rect(l,t,w,h)
+
+    def box_target_camera(self, target):
+        self.offset.x = self.camera_rect.left - self.camera_borders['left']
+        self.offset.y = self.camera_rect.top - self.camera_borders['top']
+        
+        if target.rect.left < self.camera_rect.left:
+            self.camera_rect.left = target.rect.left
+        if target.rect.right > self.camera_rect.right:
+            self.camera_rect.right = target.rect.right
+        if target.rect.bottom > self.camera_rect.bottom:
+            self.camera_rect.bottom = target.rect.bottom
+        if target.rect.top < self.camera_rect.top:
+            self.camera_rect.top = target.rect.top
 
     def custom_draw(self, player):
-        self.offset.x = player.rect.centerx - config.DISPLAY_W/2
-        self.offset.y = player.rect.centery - config.DISPLAY_H/2
-        if self.offset.x > self.x_max - self.camera_rect.width:
-            self.offset.x = self.x_max - self.camera_rect.width
-        if self.offset.y > self.y_max:
-            self.offset.y = self.y_max
-        if self.offset.x < self.x_min:
-            self.offset.x = self.x_min
-        if self.offset.y < self.y_min:
-            self.offset.y = self.y_min
-        
+        self.box_target_camera(player)       
         for layer in config.layers.values():
             for sprite in sorted(self.sprites(), key=lambda sprite: sprite.rect.centery):
                 if sprite.z == layer:
                     offset_rect = sprite.rect.copy()
                     offset_rect.center -= self.offset
                     self.display_surface.blit(sprite.image, offset_rect)
+
+        pygame.draw.rect(self.display_surface,'yellow',  self.camera_rect, 3)
             

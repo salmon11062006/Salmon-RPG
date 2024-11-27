@@ -22,8 +22,8 @@ class Game():
         self.player = None
         self.state_stack = []
         self.dt = 0
-        self.map_width = 800
-        self.map_height = 800
+        self.map_width = 1024
+        self.map_height = 1024
 
         self.actions = {
             'z': False,
@@ -53,7 +53,7 @@ class Game():
             self.render()
             self.update()
         while self.playing:
-            self.dt = self.clock.tick(60)/1000
+            self.dt = self.clock.tick() / 1000
             self.check_events()
             self.render()
             self.update()

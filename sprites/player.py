@@ -6,12 +6,11 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, pos, game, groups, collision_sprites, name, stats):
         super().__init__(groups)
         self.game = game
-        self.collision_sprites = collision_sprites
         self.name = name
-        self.z = config.layers['player']
-        self.stats = stats
-        self.base_tiles = Tilesheet('assets/soldier/Soldier-Idle.png', 50, 50, 2, 6)
-        self.walk_tiles = Tilesheet('assets/soldier/Soldier-Walk.png', 50, 50, 2, 8)
+        self.z = config.layers['trees']
+        self.stats = stats      
+        self.base_tiles = Tilesheet('assets/soldier/Soldier-Idle.png', 100, 100, 2, 6)
+        self.walk_tiles = Tilesheet('assets/soldier/Soldier-Walk.png', 100, 100, 2, 8)
         self.animations = {
             'right_idle': [self.base_tiles.get_tile(0, 0),
                         self.base_tiles.get_tile(1, 0),
@@ -46,11 +45,12 @@ class Player(pygame.sprite.Sprite):
         self.frame_index = 0
         self.status = 'right_idle'
         self.idle_statuses = ['right_idle', 'left_idle']
-        self.image = pygame.transform.scale(self.animations[self.status][self.frame_index], (32,32))
-
+        self.image = pygame.transform.scale(self.animations[self.status][self.frame_index], (100,100))
+        self.collision_sprites = collision_sprites
         self.rect = self.image.get_rect(center=pos)
+        self.hitbox = self.rect.copy().inflate((-25, -25))          
         self.direction = pygame.math.Vector2()
-        self.pos = pygame.math.Vector2(self.rect.center)
+        self.pos = pygame.math.Vector2(self.rect.centerx, self.rect.centery)
         self.speed = 200
 
     def check_idle(self):
@@ -67,8 +67,10 @@ class Player(pygame.sprite.Sprite):
 
     def input(self, actions):
         if actions['move up']:
+            self.status = 'left'
             self.direction.y -= 1
         elif actions['move down']:
+            self.status = 'right'
             self.direction.y = 1
         else:
             self.direction.y = 0
@@ -84,48 +86,39 @@ class Player(pygame.sprite.Sprite):
 
     def get_status(self):
         if self.direction.magnitude() == 0:
-            self.status = self.status.split('_')[0]
+            self.status = self.status.split('_')[0] + '_idle'
             self.moving = False
 
     def move(self, dt):
         if self.direction.magnitude() > 0:
             self.direction = self.direction.normalize()
 
-        self.pos.x += self.direction.x * self.speed * dt
-        self.rect.centerx = round(self.pos.x)
-        if self.rect.left < 0:
-            self.rect.left = 0
-            self.pos.x = self.rect.centerx
-        if self.rect.right > self.game.map_width:
-            self.rect.right = self.game.map_width
-            self.pos.x = self.rect.centerx
+        self.pos.x += round(self.direction.x * self.speed * dt)
+        self.hitbox.centerx = self.pos.x
+        self.rect.centerx = self.hitbox.centerx
         self.collision('horizontal')
-        self.pos.y += self.direction.y * self.speed * dt
-        self.rect.centery = round(self.pos.y)
-        if self.rect.top < 0:
-            self.rect.top = 0
-            self.pos.y = self.rect.centery
-        if self.rect.bottom > self.game.map_height:
-            self.rect.bottom = self.game.map_height
-            self.pos.y = self.rect.centery
-        self.collision('vertical')
 
+        self.pos.y += round(self.direction.y * self.speed * dt)
+        self.hitbox.centery = self.pos.y
+        self.rect.centery = self.hitbox.centery
+        self.collision('vertical')
+ 
     def collision(self, direction):
-        for sprite in self.collision_sprites.sprites():
-            if hasattr(sprite, 'hitbox'):
-                if sprite.hitbox.colliderect(self.rect):
-                    if direction == 'horizontal':
-                        if self.direction.x > 0:
-                            self.rect.right = sprite.hitbox.left
-                        if self.direction.x < 0:
-                            self.rect.left = sprite.hitbox.right
-                        self.pos.x = self.rect.centerx
-                    if direction == 'vertical':
-                        if self.direction.y > 0:
-                            self.rect.bottom = sprite.hitbox.top
-                        if self.direction.y < 0:
-                            self.rect.top = sprite.hitbox.bottom
-                        self.pos.y = self.rect.centery
+            for sprite in self.collision_sprites.sprites():
+                if hasattr(sprite, 'hitbox'):
+                    if sprite.hitbox.colliderect(self.rect):
+                        if direction == 'horizontal':
+                            if self.direction.x > 0:
+                                self.rect.right = sprite.hitbox.left
+                            if self.direction.x < 0:
+                                self.rect.left = sprite.hitbox.right
+                            self.pos.x = self.rect.centerx
+                        if direction == 'vertical':
+                            if self.direction.y > 0:
+                                self.rect.bottom = sprite.hitbox.top
+                            if self.direction.y < 0:
+                                self.rect.top = sprite.hitbox.bottom
+                            self.pos.y = self.rect.centery
 
     def update(self, dt):
         self.input(self.game.actions)
@@ -133,6 +126,3 @@ class Player(pygame.sprite.Sprite):
         self.check_idle()
         self.move(dt)
         self.animate(dt)
-
-        for sprite in self.collision_sprites:
-            pygame.draw.rect(self.game.WINDOW, (255, 0, 0), sprite.rect, 2)
