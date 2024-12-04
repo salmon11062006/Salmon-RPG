@@ -126,3 +126,5 @@ class Player(pygame.sprite.Sprite):
         self.check_idle()
         self.move(dt)
         self.animate(dt)
+
+    

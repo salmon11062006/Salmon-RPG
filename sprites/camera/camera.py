@@ -34,5 +34,4 @@ class Camera(pygame.sprite.Group):
                     offset_rect.center -= self.offset
                     self.display_surface.blit(sprite.image, offset_rect)
 
-        pygame.draw.rect(self.display_surface,'yellow',  self.camera_rect, 3)
             

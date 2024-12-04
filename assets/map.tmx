@@ -7,16 +7,16 @@
    eJztwzENAAAMA6DOv6haq4w9kNBLqqqqqqqqqqqqqqqqqqqqqr4esrIAtQ==
   </data>
  </layer>
- <layer id="11" name="Trees" width="64" height="64">
-  <data encoding="base64" compression="zlib">
-   eJzt2UEOwjAMRNGot4Ad3P+QwLoSgcbOT93/9mRU1ZlUpDVJH7ettfvGrUHnP96/ew7mj6xB5+u7iPk8cz49W3S+pL1eL2X3Fp3f66Xs3qLzq6LPWzqfnhs6X9L10L1Ls3fz0LNF50fMFv0fH63CMyhext6m++Kf/Ix9YV+Nq/AMklRZ1ln/67oV7v9H1vX+f21n+hbOQM8WnS9pj75/76l+/99D50ebNU+rzu2s90nPDZ0v6XqO9H7kWUHnH+ndyK6m8zOt+k0xC/2e6HzVRe8t+v4/Y2/R+XRf0PlSZS91PhSt
-  </data>
- </layer>
  <objectgroup id="7" name="Player">
-  <object id="23" name="Game Start" x="1017.36" y="1003.7">
+  <object id="23" name="Game Start" x="1138.69" y="1053.03">
    <point/>
   </object>
  </objectgroup>
+ <layer id="11" name="Trees" width="64" height="64">
+  <data encoding="base64" compression="zlib">
+   eJzt2UEOwjAMRNGot4Ad3P+QlDWCQGL3p+a/PRlFdScVaU3S02Vr7bpxa9D5t/1398n8mTXofH0WMZ9nzqdni86X9KrXS9m9Ref3eim7t+j8qujzls6n54bOl/R/6N6l2bt1VZht+j++KKP7WGkPM6rsYxUZ7zbdF7/kZ8xTxJpV+mpUhT1IUmVZZ/2361a4/59Z1/v/tZ3pWzgDPVt0vnLR800763zT9+891e//e+j8aEfNEz237xz1PKvNjST1jPR+5FlB54/0fuRZQednor8p6Hz6OdH5qot+t+j7/4x3i86n+4LOlyp7APFFFK0=
+  </data>
+ </layer>
  <layer id="16" name="Collision" width="64" height="64">
   <data encoding="base64" compression="zlib">
    eJzt2bENAlEQxNCv678pdCQIiqKFyzzBs7Tx2PGeAwAAAAAAAOAJ93XOJ7r3Vdef8wodyu0FB/3d9oKD/m57wUF/t73goL/bXnDQ320vOOjvthcc9HfbCw76u+0FB/3d9oKD/m57wUF/t73goL/bXnDQ320vOOjvthccFvq/4f/7N9APAAAAAMv8AZvYYG8=
