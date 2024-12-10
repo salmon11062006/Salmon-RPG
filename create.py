@@ -36,8 +36,8 @@ class CreateCharacter(State, Menu):
         self.points = 10
         self.str_points = 10
         self.int_points = 10
-        self.vit_points = 10
-        self.eru_points = 10
+        self.vit_points = 30
+        self.eru_points = 20
         self.agi_points = 10
 
         self.points_disp = self.font2.render(f'{self.points}', True, self.game.BLACK)
@@ -219,7 +219,7 @@ class CreateCharacter(State, Menu):
                             }
                             self.game.next_state.setup_player(self.game.next_state.player_start, self.textbox.getText(), stats)
                             self.game.next()
-                        elif self.points > 0:
+                        elif self.points > 0 and self.textbox.getText == '':
                             pygame.mixer.init()
                             pygame.mixer.music.load('assets/stinky.mp3')
                             pygame.mixer_music.set_volume(0.3)

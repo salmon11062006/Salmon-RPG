@@ -8,6 +8,7 @@ class Player(pygame.sprite.Sprite):
         self.game = game
         self.name = name
         self.z = config.layers['trees']
+        self.level = config.player_levels[0]
         self.stats = stats      
         self.base_tiles = Tilesheet('assets/soldier/Soldier-Idle.png', 100, 100, 2, 6)
         self.walk_tiles = Tilesheet('assets/soldier/Soldier-Walk.png', 100, 100, 2, 8)
@@ -52,6 +53,14 @@ class Player(pygame.sprite.Sprite):
         self.direction = pygame.math.Vector2()
         self.pos = pygame.math.Vector2(self.rect.centerx, self.rect.centery)
         self.speed = 200
+        self.inventory = {
+            'Health': 1,
+            'Mana': 2,
+        }
+        self.max_hp = self.stats['VIT']
+        self.hp = self.max_hp
+        self.max_mp = self.stats['ERU']
+        self.mp = self.max_mp
 
     def check_idle(self):
         if self.status not in self.idle_statuses:

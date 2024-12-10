@@ -2,7 +2,9 @@
 from random import randint
 import pygame
 import pytmx
+from battle import Battle
 from sprites.camera.camera import Camera
+from sprites.orc import Orc
 from sprites.player import Player
 from sprites.sprites import Generic
 from sprites.sprites import Tree
@@ -20,7 +22,7 @@ class Salmonella(State):
         self.path_sprites = pygame.sprite.Group()
         self.map = True
         self.setup()
-        self.battle_timer = Timer(400)
+        self.battle_timer = Timer(0)
         self.count = 100
 
     def setup(self):
@@ -67,9 +69,59 @@ class Salmonella(State):
                 if self.count <= 0:
                     self.battle_timer.deactivate()
                     self.count = 100
-                    self.determine_enemy()
+                    orc = self.determine_enemy()
+                    self.game.next_state = Battle(self.game, "Battle", orc, self.player)
+                    self.game.next()
             else:
                 print('Safe')
 
     def determine_enemy(self):
-        print('Enemy found')
+        size_num = randint(1,100)
+        if size_num <= 25:
+            size = 'small'
+        elif size_num <= 65:
+            size = 'med'
+        else:
+            size = 'big'
+        level_num = randint(1,100)
+        if level_num <= 80:
+            if size == 'small':
+                level = config.small_levels[self.player.level.level]
+            elif size == 'med':
+                level = config.med_levels[self.player.level.level]
+            else:
+                level = config.big_levels[self.player.level.level]
+        if level_num <= 95:
+            if size == 'small':
+                if self.player.level.level == 0:
+                    level = config.small_levels[self.player.level.level]
+                else:
+                    level = config.small_levels[self.player.level.level - 1]
+            elif size == 'med':
+                if self.player.level.level == 0:
+                    level = config.med_levels[self.player.level.level]
+                else:
+                    level = config.med_levels[self.player.level.level - 1]
+            else:
+                if self.player.level.level == 0:
+                    level = config.big_levels[self.player.level.level]
+                else:
+                    level = config.big_levels[self.player.level.level - 1]
+
+        else:
+            if size == 'small':
+                if self.player.level.level < len(config.small_levels) - 1:
+                    level = config.small_levels[self.player.level.level + 1]
+                else:
+                    level = config.small_levels[self.player.level.level]
+            elif size == 'med':
+                if self.player.level.level < len(config.med_levels) - 1:
+                    level = config.med_levels[self.player.level.level + 1]
+                else:
+                    level = config.med_levels[self.player.level.level]
+            else:
+                if self.player.level.level < len(config.big_levels) - 1:
+                    level = config.big_levels[self.player.level.level + 1]
+                else:
+                    level = config.big_levels[self.player.level.level]
+        return Orc(level, size)

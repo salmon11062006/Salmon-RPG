@@ -9,6 +9,9 @@ class Menu():
     def draw_cursor(self):
         self.game.draw_text(self.game.WINDOW, '>', self.game.WHITE, 15, self.cursor_rect.x, self.cursor_rect.y)
 
+    def draw_cursor2(self):
+        self.game.draw_text(self.game.WINDOW, '>', self.game.BLACK, 10, self.cursor_rect.x, self.cursor_rect.y)
+
     def blit_screen(self):
         self.game.WINDOW.blit(self.game.DISPLAY, (0,0))
         pygame.display.update()
