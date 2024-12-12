@@ -53,7 +53,7 @@ class Salmonella(State):
 
     #loading the player onto the map
     def setup_player(self, pos, name, stats):
-        map_data = pytmx.load_pygame('C:/Users/csalo/OneDrive/Documents/COMPUTER SCIENCE/ALGOPROFINAL/assets/map.tmx')
+        map_data = pytmx.load_pygame('assets/map.tmx')
         self.player_setup = True
         for obj in map_data.get_layer_by_name('Player'):
             if obj.name == 'Game Start':
