@@ -8,6 +8,7 @@ class GameOver(State, Menu):
         State.__init__(self, game, name)
         Menu.__init__(self, game)
 
+        #loading the fonts and buttons
         self.font = pygame.font.Font('assets/8-bit-hud.ttf', 40)
         self.small_font = pygame.font.Font('assets/8-bit-hud.ttf', 25)
         self.go_text = self.font.render('GAME OVER', True, self.game.WHITE)
@@ -17,12 +18,13 @@ class GameOver(State, Menu):
         self.main_text = self.small_font.render('Main Menu', True, self.game.WHITE)
         self.main_rect = self.main_text.get_rect(center=(self.mid_w, self.mid_h + 140))
         self.cursor_rect.center = (self.mid_w - 170, self.mid_h + 80)
+        #button selection for the cursor
         self.menu_options = {
             0: self.mid_h + 80,
             1: self.mid_h + 130
         }
         self.index = 0
-
+    #here's the cursor movement
     def move_cursor(self, actions):
         if actions['down']:
             self.index += 1
@@ -42,21 +44,22 @@ class GameOver(State, Menu):
                 self.index = 1
         self.cursor_rect.y = self.menu_options[self.index]
 
+    #updates the cursor movement and selection
     def update(self, delta_time, actions):
-        pos = pygame.mouse.get_pos()
-        self.move_cursor(actions)
+        self.move_cursor(actions) #moves the cursor
         if actions['enter']:
             if self.index == 0:
-                self.game.load_game()
+                self.game.load_game() #no save files for you
             else:
                 self.game.title.open = False
                 self.game.next_state = self.game.title
                 self.game.next()
         self.game.reset_keys()
 
+    #blits the game over screen
     def render(self, surface):
         surface.fill(self.game.BLACK)
         surface.blit(self.go_text, self.go_rect)
         self.load_button = surface.blit(self.load_text, self.load_rect)
         self.main_button = surface.blit(self.main_text, self.main_rect)
-        self.draw_cursor()
+        self.draw_cursor() #draws the cursor

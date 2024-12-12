@@ -15,35 +15,39 @@ from support import Timer
 
 class Salmonella(State):
     def __init__(self, game, name):
-        State.__init__(self, game, name)
-        self.all_sprites = Camera()
-        self.interaction_sprites = pygame.sprite.Group()
-        self.collision_sprites = pygame.sprite.Group()
-        self.path_sprites = pygame.sprite.Group()
-        self.map = True
-        self.setup()
-        self.battle_timer = Timer(0)
-        self.count = 100
+        State.__init__(self, game, name) #inherit state class
+        self.all_sprites = Camera() #initialize the camera
+        self.collision_sprites = pygame.sprite.Group() #collision handling
+        self.map = True #initialize the map
+        self.setup() #setup the map
+        self.battle_timer = Timer(200) #encounter timer
+        self.count = 100 #counter for randomizing the timer
 
     def setup(self):
+        #load tmx file
         map_data = pytmx.load_pygame('C:/Users/csalo/OneDrive/Documents/COMPUTER SCIENCE/ALGOPROFINAL/assets/map.tmx')
 
+        #ground loading
         for x, y, surf in map_data.get_layer_by_name('Ground').tiles():
             transformed_surf = pygame.transform.scale(surf, (32,32))
-            Generic((x*32, y*32), transformed_surf, [self.all_sprites, self.path_sprites], config.layers['ground'])
+            Generic((x*32, y*32), transformed_surf, self.all_sprites, config.layers['ground'])
         
+        #tree loading
         for x, y, surf in map_data.get_layer_by_name('Trees').tiles():
             transformed_surf = pygame.transform.scale(surf, (32,32))
             Tree((x*32, y*32), transformed_surf, [self.all_sprites,self.collision_sprites], config.layers['trees'])
 
+        #collisions
         for x, y, surf in map_data.get_layer_by_name('Collision').tiles():
             transformed_surf = pygame.transform.scale(surf, (32,32))
             Tree((x*32, y*32), transformed_surf, [self.all_sprites, self.collision_sprites], config.layers['trees'])
 
+        #creating the player
         for obj in map_data.get_layer_by_name('Player'):
             if obj.name == 'Game Start':
                 self.player_start = (obj.x, obj.y)
 
+    #loading the player onto the map
     def setup_player(self, pos, name, stats):
         map_data = pytmx.load_pygame('C:/Users/csalo/OneDrive/Documents/COMPUTER SCIENCE/ALGOPROFINAL/assets/map.tmx')
         self.player_setup = True
@@ -52,7 +56,7 @@ class Salmonella(State):
                 self.player_start = (obj.x, obj.y)
                 self.player = Player(pos, self.game, self.all_sprites, self.collision_sprites, name, stats)
 
-
+    #checking all the events
     def update(self, dt, actions):
         self.game.WINDOW.fill(self.game.BLACK)
         self.all_sprites.custom_draw(self.player)     
@@ -60,6 +64,7 @@ class Salmonella(State):
         self.check_for_battle()
         self.all_sprites.update(dt)
 
+    #timer check
     def check_for_battle(self):
         if self.player.moving:
             if not self.battle_timer.active:
@@ -73,6 +78,7 @@ class Salmonella(State):
                     self.game.next_state = Battle(self.game, "Battle", orc, self.player)
                     self.game.next()
 
+    #size of orc(affects orc stats)
     def determine_enemy(self):
         size_num = randint(1,100)
         if size_num <= 25:

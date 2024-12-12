@@ -8,16 +8,16 @@ from support import Tilesheet, Timer
 class BattleComplete(State):
     def __init__(self, game, name, xp, coins, level_up, player):
         State.__init__(self, game, name)
-        self.xp = xp
-        self.coins = coins
-        self.player = player
-        self.level_up = level_up
-        self.player_rem_xp = self.player.level.xp - self.player.xp
+        self.xp = xp #xp earned from battle
+        self.coins = coins #coins earned from battle
+        self.player = player #player stats
+        self.level_up = level_up #if player leveled up
+        self.player_rem_xp = self.player.level.xp - self.player.xp #xp needed to level up
         self.font = pygame.font.Font('assets/8-bit-hud.ttf', 20)
         self.large_font = pygame.font.Font('assets/8-bit-hud.ttf', 40)
         self.xp_font = pygame.font.Font('assets/8-bit-hud.ttf', 40)
-        self.battle_timer = Timer(200)
-        self.count = 100
+        self.battle_timer = Timer(200) #timer reset
+        self.count = 100 #timer reset
         self.coin_tiles = Tilesheet('assets/coin.png', 100, 100, 1, 5)
         self.coin_image = pygame.transform.scale(self.coin_tiles.get_tile(0, 0), (100,100))
         self.xp_label = self.xp_font.render('XP', True, self.game.BLACK)
@@ -25,12 +25,14 @@ class BattleComplete(State):
         self.coins_earned = self.large_font.render(f'{self.coins}', True, self.game.BLACK)
 
         if self.level_up:
+            #added stats
             self.health = 0
             self.mana = 0
             self.speed = 0
             self.strength = 0
             self.intelligence = 0
 
+            #randomly increase stats 5 times
             for i in range(5):
                 skill = random.choice(list(self.player.stats.keys()))
                 match skill:
@@ -48,7 +50,7 @@ class BattleComplete(State):
 
                      
 
-
+            #text and stuff on the screen
             self.space = self.font.render('Press Enter to Continue', True, self.game.BLACK)
             self.header = self.font.render(f'LEVEL UP! You are now level {self.player.level.level}', True, self.game.BLACK)
             self.coin_rect = self.coin_image.get_rect(center=(config.DISPLAY_W/4, config.DISPLAY_H/2 - 50))
@@ -56,6 +58,7 @@ class BattleComplete(State):
             self.coins_earned_rect = self.coins_earned.get_rect(center=(self.coin_rect.centerx + 100, self.coin_rect.centery))
             self.xp_earned_rect = self.xp_earned.get_rect(center=(self.xp_label_rect.centerx + 100, self.xp_label_rect.centery))
             
+            #more text and stuff on the screen
             self.str = self.font.render(f'Strength: {self.player.stats['STR']}', True, self.game.BLACK)
             self.int = self.font.render(f'Intelligence: {self.player.stats['INT']}', True, self.game.BLACK)
             self.vit = self.font.render(f'Max Health: {self.player.stats['VIT']}', True, self.game.BLACK)
@@ -67,7 +70,7 @@ class BattleComplete(State):
             self.eru_rect = self.eru.get_rect(topleft=self.vit_rect.bottomleft)
             self.agi_rect = self.agi.get_rect(topleft=self.eru_rect.bottomleft)
 
-            self.increased_stats = []
+            self.increased_stats = [] #simplifying the screen blitting with a list
             if self.health > 0:
                 self.health_text = self.font.render(f'+{self.health}', True, self.game.GREEN)
                 self.health_rect = self.health_text.get_rect(topleft=self.vit_rect.topright)
@@ -118,12 +121,12 @@ class BattleComplete(State):
             surface.blit(self.eru, self.eru_rect)
             surface.blit(self.agi, self.agi_rect)
             for stat in self.increased_stats:
-                surface.blit(stat[0], stat[1])
+                surface.blit(stat[0], stat[1]) #the simplification mentioned above
 
 
     def update(self, dt, actions):
         if actions['enter']:
             if self.level_up:
-                self.exit_state()
+                self.exit_state() #exits the current screen, goes back to the world
             else:
-                self.exit_state()
+                self.exit_state() 

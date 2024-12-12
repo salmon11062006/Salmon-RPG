@@ -1,5 +1,7 @@
 import pygame
 import config
+
+#literally dedicated to the cursor
 class Menu():
     def __init__(self, game):
         self.game = game
@@ -15,4 +17,4 @@ class Menu():
     def blit_screen(self):
         self.game.WINDOW.blit(self.game.DISPLAY, (0,0))
         pygame.display.update()
-        self.game.reset_keys()
+        self.game.reset_keys() #so multiple inputs dont happen

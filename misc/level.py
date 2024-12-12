@@ -1,3 +1,4 @@
+#both classes are just there to store data for config.py
 class OrcLevel:
     def __init__(self, level, dmg_range, speed, max_hp, xp_range, gold_range):
         self.level = level
