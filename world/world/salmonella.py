@@ -29,7 +29,7 @@ class Salmonella(State):
 
     def setup(self):
         #load tmx file
-        map_data = pytmx.load_pygame('C:/Users/csalo/OneDrive/Documents/COMPUTER SCIENCE/ALGOPROFINAL/assets/map.tmx')
+        map_data = pytmx.load_pygame('assets/map.tmx')
 
         #ground loading
         for x, y, surf in map_data.get_layer_by_name('Ground').tiles():
