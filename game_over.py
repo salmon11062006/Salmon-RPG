@@ -23,6 +23,11 @@ class GameOver(State, Menu):
 
         self.cursor_rect.y = self.menu_options[0]
 
+        pygame.mixer.init()
+        pygame.mixer.music.load('assets/title.mp3')
+        pygame.mixer_music.set_volume(0.7)
+        pygame.mixer.music.play()
+
     #updates the cursor selection
     def update(self, delta_time, actions):
         if actions['enter']:
