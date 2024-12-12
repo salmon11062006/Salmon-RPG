@@ -56,11 +56,15 @@ class Player(pygame.sprite.Sprite):
         self.inventory = {
             'Health': 1,
             'Mana': 2,
+            'Weapon': []
         }
+        self.weapon = None
         self.max_hp = self.stats['VIT']
         self.hp = self.max_hp
         self.max_mp = self.stats['ERU']
         self.mp = self.max_mp
+        self.coins = 10
+        self.xp = 0
 
     def check_idle(self):
         if self.status not in self.idle_statuses:

@@ -27,9 +27,9 @@ med3 = OrcLevel(3, [6,9], 10, 35, [11,15], [10,16])
 
 med_levels = [med1, med2, med3]
 
-level0 = Level(0, 50, 5)
-level1 = Level(1, 125, 7)
-level2 = Level(2, 250, 20)
-level3 = Level(3, 350, 25)
+level0 = Level(0, 2)
+level1 = Level(1, 5)
+level2 = Level(2, 10)
+level3 = Level(3, 15)
 
 player_levels = [level0, level1, level2, level3]

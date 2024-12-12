@@ -72,8 +72,6 @@ class Salmonella(State):
                     orc = self.determine_enemy()
                     self.game.next_state = Battle(self.game, "Battle", orc, self.player)
                     self.game.next()
-            else:
-                print('Safe')
 
     def determine_enemy(self):
         size_num = randint(1,100)

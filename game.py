@@ -1,3 +1,4 @@
+import json
 import pygame
 from title import Title
 import config
@@ -8,7 +9,7 @@ class Game():
         self.running, self.playing = True, False
         self.DISPLAY = pygame.Surface((config.DISPLAY_W, config.DISPLAY_H))
         self.WINDOW = pygame.display.set_mode(((config.DISPLAY_W, config.DISPLAY_H)))
-        self.BLACK, self.WHITE, self.PURPLE, self.GREY, self.YELLOW = (0, 0, 0), (255, 255, 255), (135, 92, 242), (199, 200, 201), (234, 237, 183)
+        self.BLACK, self.WHITE, self.PURPLE, self.GREY, self.YELLOW, self.GREEN = (0, 0, 0), (255, 255, 255), (135, 92, 242), (199, 200, 201), (234, 237, 183), (19, 173, 55)
         self.main_menu = Title(self, 'Title')
         self.clock = pygame.time.Clock()
         self.fading = None
@@ -127,10 +128,10 @@ class Game():
                     self.actions['move down']= True
                 elif event.key == pygame.K_w:
                     self.actions['move up']= True
-                elif event.key == pygame.MOUSEBUTTONDOWN:
-                    if event.button == 1:
-                        self.actions['left mouse']= True
-                
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    self.actions['left mouse']= True
+            
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_RETURN:
                     self.actions['enter'] = False
@@ -158,9 +159,8 @@ class Game():
                     self.actions['move down']= False
                 elif event.key == pygame.K_w:
                     self.actions['move up']= False
-                elif event.key == pygame.MOUSEBUTTONUP:
-                    if event.button == 1:
-                        self.actions['left mouse']= False
-
+            if event.type == pygame.MOUSEBUTTONUP:
+                if event.button == 1:
+                    self.actions['left mouse']= False
 
     

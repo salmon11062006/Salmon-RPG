@@ -8,7 +8,6 @@ class OrcLevel:
         self.gold_range = gold_range
 
 class Level:
-    def __init__(self, level, xp, points):
+    def __init__(self, level, xp):
         self.level = level
         self.xp = xp
-        self.points = points

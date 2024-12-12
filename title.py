@@ -71,8 +71,17 @@ class Title(State, Menu):
                 self.game.next_state = self.game.create_character
                 self.game.next()
             elif self.index == 1:
-                self.open = True
-                print('Load Game')
+                # Load the game state from a file
+                loaded_game_state = self.game.load_game('savefile.txt')
+                # Restore the game state
+                self.game.next_state = loaded_game_state['next_state']
+                self.game.playing = loaded_game_state['playing']
+                self.str_points = loaded_game_state['stats']['STR']
+                self.int_points = loaded_game_state['stats']['INT']
+                self.vit_points = loaded_game_state['stats']['VIT']
+                self.eru_points = loaded_game_state['stats']['ERU']
+                self.agi_points = loaded_game_state['stats']['AGI']
+                self.game.next()
             elif self.index == 2:
                 pygame.quit()
         self.game.reset_keys()

@@ -1,10 +1,11 @@
 from random import randint
 import pygame
 import config
+from game_over import GameOver
 from menu import Menu
 from misc.action import Attack, Potion, Spell
 from state import State
-
+from battle_complete import BattleComplete
 
 class Battle(State, Menu):
     def __init__(self, game, name, enemy, player):
@@ -92,7 +93,7 @@ class Battle(State, Menu):
 
 
     def update(self, delta_time, actions):
-        self.enemy.update(delta_time)
+        self.player.update(delta_time)
         self.battle(actions)
         self.game.reset_keys()
 
@@ -195,7 +196,7 @@ class Battle(State, Menu):
                         self.enemy.hp -= damage_amount
                         self.enemy_hp = self.font.render(f'HP: {self.enemy.hp}', True, self.game.BLACK)
                         self.header_text = f'Your {move.type} dealt {damage_amount} damage to the Orc!'
-                        self.header = self.font.render(self.header_text, True, self.game.BLACK)
+                        self.header = self.font2.render(self.header_text, True, self.game.BLACK)
                         self.header_rect = self.header.get_rect(center=self.player_banner_rect.center)
                         self.mp = self.font.render(f'MP: {self.player.mp}', True, self.game.BLACK)
                         self.turn = 'Enemy'
@@ -220,7 +221,7 @@ class Battle(State, Menu):
                     self.enemy.hp -= damage_amount
                     self.enemy_hp = self.font.render(f'HP: {self.enemy.hp}', True, self.game.BLACK)
                     self.header_text = f'Your melee attack does {damage_amount} damage to the Orc!'
-                    self.header = self.font.render(self.header_text, True, self.game.BLACK)
+                    self.header = self.font2.render(self.header_text, True, self.game.BLACK)
                     self.header_rect = self.header.get_rect(center=self.player_banner_rect.center)
                 else:
                     self.header_text = 'Your melee attack misses!'
@@ -283,7 +284,7 @@ class Battle(State, Menu):
             self.player.hp -= damage
             self.hp = self.font.render(f'HP: {self.player.hp}', True, self.game.BLACK)
             self.enemy_header_text = f'The Orc attacks you for {damage} damage!'
-            self.enemy_header = self.font.render(self.enemy_header_text, True, self.game.BLACK)
+            self.enemy_header = self.font2.render(self.enemy_header_text, True, self.game.BLACK)
             self.enemy_header_rect = self.enemy_header.get_rect(center=self.enemy_banner_rect.center)
         else:
             self.enemy_header_text = f'You dodge the attack!'
@@ -299,6 +300,23 @@ class Battle(State, Menu):
             else:
                 self.enemy_turn()
         elif self.enemy.hp <= 0:
+            xp = randint(self.enemy.level.xp_range[0], self.enemy.level.xp_range[1])
+            coins = randint(self.enemy.level.gold_range[0], self.enemy.level.gold_range[1])
+            self.player.coins += coins
+            self.player.xp += xp
+            level_up = False
+            if self.player.xp > self.player.level.xp:
+                rem_xp = self.player.xp - self.player.level.xp
+                new_level = self.player.level.level + 1
+                self.player.xp = rem_xp
+                self.player.level = config.player_levels[new_level]
+                level_up = True
             self.exit_state()
+            self.game.next_state = BattleComplete(self.game, 'Battle Complete', xp, coins, level_up, self.player)
+            self.game.next()
         elif self.player.hp <= 0:
-            pass
+            pygame.time.wait(30)
+            self.game.player = None
+            game_over = GameOver(self.game, 'Game Over')
+            self.game.next_state = game_over
+            self.game.next()

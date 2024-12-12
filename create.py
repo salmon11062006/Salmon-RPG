@@ -5,7 +5,8 @@ from pygame_widgets.textbox import TextBox
 import config
 from state import State
 from menu import Menu
-from world.salmonella import Salmonella
+from world.world.salmonella import Salmonella
+
 
 class CreateCharacter(State, Menu):
     def __init__(self, game, name):
@@ -219,7 +220,7 @@ class CreateCharacter(State, Menu):
                             }
                             self.game.next_state.setup_player(self.game.next_state.player_start, self.textbox.getText(), stats)
                             self.game.next()
-                        elif self.points > 0 and self.textbox.getText == '':
+                        elif self.points > 0:
                             pygame.mixer.init()
                             pygame.mixer.music.load('assets/stinky.mp3')
                             pygame.mixer_music.set_volume(0.3)
