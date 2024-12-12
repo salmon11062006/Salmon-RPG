@@ -54,8 +54,8 @@ class Player(pygame.sprite.Sprite):
         self.pos = pygame.math.Vector2(self.rect.centerx, self.rect.centery)
         self.speed = 200
         self.inventory = {
-            'Health': 1,
-            'Mana': 2,
+            'Health': 3,
+            'Mana': 3,
             'Weapon': []
         }
         self.weapon = None
