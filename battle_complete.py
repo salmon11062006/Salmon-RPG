@@ -59,11 +59,11 @@ class BattleComplete(State):
             self.xp_earned_rect = self.xp_earned.get_rect(center=(self.xp_label_rect.centerx + 100, self.xp_label_rect.centery))
             
             #more text and stuff on the screen
-            self.str = self.font.render(f'Strength: {self.player.stats['STR']}', True, self.game.BLACK)
-            self.int = self.font.render(f'Intelligence: {self.player.stats['INT']}', True, self.game.BLACK)
-            self.vit = self.font.render(f'Max Health: {self.player.stats['VIT']}', True, self.game.BLACK)
-            self.eru = self.font.render(f'Max Mana: {self.player.stats['ERU']}', True, self.game.BLACK)
-            self.agi = self.font.render(f'Speed: {self.player.stats['AGI']}', True, self.game.BLACK)
+            self.str = self.font.render(f'Strength: {self.player.stats["STR"]}', True, self.game.BLACK)
+            self.int = self.font.render(f'Intelligence: {self.player.stats["INT"]}', True, self.game.BLACK)
+            self.vit = self.font.render(f'Max Health: {self.player.stats["VIT"]}', True, self.game.BLACK)
+            self.eru = self.font.render(f'Max Mana: {self.player.stats["ERU"]}', True, self.game.BLACK)
+            self.agi = self.font.render(f'Speed: {self.player.stats["AGI"]}', True, self.game.BLACK)
             self.str_rect = self.str.get_rect(center=(config.DISPLAY_W/2 + 140 , config.DISPLAY_H/2 - 100))
             self.int_rect = self.int.get_rect(topleft=self.str_rect.bottomleft)
             self.vit_rect = self.vit.get_rect(topleft=self.int_rect.bottomleft)

@@ -45,8 +45,8 @@ class Battle(State, Menu):
         self.fireball_text = self.font2.render('Fireball 5mp', True, self.game.BLACK)
         self.shieldthrow_text = self.font2.render('Shield Throw 3mp', True, self.game.BLACK)
         self.melee_text = self.font2.render('Melee Attack', True, self.game.BLACK)
-        self.potion_text = self.font2.render(f'Health Potion: {self.player.inventory['Health']}', True, self.game.BLACK)
-        self.mana_text = self.font2.render(f'Mana Potion: {self.player.inventory['Mana']}', True, self.game.BLACK)
+        self.potion_text = self.font2.render(f'Health Potion: {self.player.inventory["Health"]}', True, self.game.BLACK)
+        self.mana_text = self.font2.render(f'Mana Potion: {self.player.inventory["Mana"]}', True, self.game.BLACK)
         self.flee_text = self.font2.render('Flee', True, self.game.BLACK)
 
         #to position the text
