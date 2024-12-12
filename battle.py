@@ -104,6 +104,11 @@ class Battle(State, Menu):
         self.cursor_rect.center = (self.melee_text_rect.centerx - 40, config.DISPLAY_H - 70)
         self.turn = 'Player'
 
+        pygame.mixer.init()
+        pygame.mixer.music.load('assets/battle.mp3')
+        pygame.mixer_music.set_volume(0.7)
+        pygame.mixer.music.play()
+
 
     
     def update(self, delta_time, actions):
@@ -250,6 +255,9 @@ class Battle(State, Menu):
                 fail_chance = randint(1, 20) + int((self.enemy.level.speed - 10) / 2) #chance to fail is based on enemy speed
                 if chance > fail_chance: #check if the player flees
                     self.exit_state()
+                    pygame.mixer.music.load('assets/game.mp3')
+                    pygame.mixer_music.set_volume(0.7)
+                    pygame.mixer.music.play()
                 else:
                     self.header_text = 'You fail to flee!'
                     self.header = self.font.render(self.header_text, True, self.game.BLACK)
@@ -330,6 +338,9 @@ class Battle(State, Menu):
             self.exit_state()
             self.game.next_state = BattleComplete(self.game, 'Battle Complete', xp, coins, level_up, self.player) #switches to battle complete screen
             self.game.next()
+            pygame.mixer.music.load('assets/game.mp3')
+            pygame.mixer_music.set_volume(0.7)
+            pygame.mixer.music.play()
         elif self.player.hp <= 0: #checks if the player is dead
             pygame.time.wait(30)
             self.game.player = None

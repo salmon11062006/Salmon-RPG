@@ -14,42 +14,44 @@ class Title(State, Menu):
         self.font = pygame.font.Font('assets/8-bit-hud.ttf', 20)
 
         self.title_text = self.font.render('Salmon RPG', True, self.game.WHITE)
-        self.new_text = self.font.render('New Game', True, self.game.WHITE)
-        self.load_text = self.font.render('Load Game', True, self.game.WHITE)
+        self.new_text = self.font.render('Start Game', True, self.game.WHITE)
         self.quit_text = self.font.render('Quit', True, self.game.WHITE)
 
         self.title_rect = self.title_text.get_rect(center=(self.mid_w, self.mid_h - 30))
         self.new_rect = self.new_text.get_rect(center=(self.mid_w, self.mid_h + 50))
-        self.load_rect = self.load_text.get_rect(center=(self.mid_w, self.mid_h + 100))
-        self.quit_rect = self.quit_text.get_rect(center=(self.mid_w, self.mid_h + 150))
+        self.quit_rect = self.quit_text.get_rect(center=(self.mid_w, self.mid_h + 100))
 
         self.cursor_rect.center = (self.mid_w - 120, self.mid_h + 50)
 
         self.menu_options = {
             0: self.mid_h + 50,
             1: self.mid_h + 100,
-            2: self.mid_h + 150
         }
 
         self.index = 0 
 
+        pygame.mixer.init()
+        pygame.mixer.music.load('assets/title.mp3')
+        pygame.mixer_music.set_volume(0.7)
+        pygame.mixer.music.play()
+
     def move_cursor(self, actions):
         if actions['down']:
             self.index +=1
-            if self.index == 3:
+            if self.index == 2:
                 self.index = 0
         if actions['move down']:
             self.index +=1
-            if self.index == 3:
+            if self.index == 2:
                 self.index = 0
         if actions['up']:
             self.index -=1
             if self.index < 0:
-                self.index = 2
+                self.index = 1
         if actions['move up']:
             self.index -=1
             if self.index < 0:
-                self.index = 2
+                self.index = 1
         self.cursor_rect.y = self.menu_options[self.index]
 
     def render(self, screen):
@@ -58,7 +60,6 @@ class Title(State, Menu):
             if not self.open:
                 screen.blit(self.title_text, self.title_rect)
                 screen.blit(self.new_text, self.new_rect)
-                screen.blit(self.load_text, self.load_rect)
                 screen.blit(self.quit_text, self.quit_rect)
                 self.draw_cursor()
 
@@ -71,8 +72,6 @@ class Title(State, Menu):
                 self.game.next_state = self.game.create_character
                 self.game.next()
             elif self.index == 1:
-                print('Load Game') #yeah i didnt finish the save file thing in time ;-;
-            elif self.index == 2:
                 pygame.quit()
         self.game.reset_keys()
 

@@ -22,6 +22,10 @@ class Salmonella(State):
         self.setup() #setup the map
         self.battle_timer = Timer(200) #encounter timer
         self.count = 100 #counter for randomizing the timer
+        pygame.mixer.init()
+        pygame.mixer.music.load('assets/game.mp3')
+        pygame.mixer_music.set_volume(0.7)
+        pygame.mixer.music.play()
 
     def setup(self):
         #load tmx file

@@ -13,53 +13,27 @@ class GameOver(State, Menu):
         self.small_font = pygame.font.Font('assets/8-bit-hud.ttf', 25)
         self.go_text = self.font.render('GAME OVER', True, self.game.WHITE)
         self.go_rect = self.go_text.get_rect(center=(self.mid_w, self.mid_h))
-        self.load_text = self.small_font.render('Load Game', True, self.game.WHITE)
-        self.load_rect = self.load_text.get_rect(center=(self.mid_w, self.mid_h + 80))
         self.main_text = self.small_font.render('Main Menu', True, self.game.WHITE)
-        self.main_rect = self.main_text.get_rect(center=(self.mid_w, self.mid_h + 140))
+        self.main_rect = self.main_text.get_rect(center=(self.mid_w, self.mid_h + 80))
         self.cursor_rect.center = (self.mid_w - 170, self.mid_h + 80)
         #button selection for the cursor
         self.menu_options = {
             0: self.mid_h + 80,
-            1: self.mid_h + 130
         }
-        self.index = 0
-    #here's the cursor movement
-    def move_cursor(self, actions):
-        if actions['down']:
-            self.index += 1
-            if self.index == 2:
-                self.index = 0
-        if actions['up']:
-            self.index -= 1
-            if self.index < 0:
-                self.index = 1
-        if actions['move down']:
-            self.index += 1
-            if self.index == 2:
-                self.index = 0
-        if actions['move up']:
-            self.index -= 1
-            if self.index < 0:
-                self.index = 1
-        self.cursor_rect.y = self.menu_options[self.index]
 
-    #updates the cursor movement and selection
+        self.cursor_rect.y = self.menu_options[0]
+
+    #updates the cursor selection
     def update(self, delta_time, actions):
-        self.move_cursor(actions) #moves the cursor
         if actions['enter']:
-            if self.index == 0:
-                self.game.load_game() #no save files for you
-            else:
-                self.game.title.open = False
-                self.game.next_state = self.game.title
-                self.game.next()
+            self.game.title.open = False
+            self.game.next_state = self.game.title
+            self.game.next()
         self.game.reset_keys()
 
     #blits the game over screen
     def render(self, surface):
         surface.fill(self.game.BLACK)
         surface.blit(self.go_text, self.go_rect)
-        self.load_button = surface.blit(self.load_text, self.load_rect)
         self.main_button = surface.blit(self.main_text, self.main_rect)
         self.draw_cursor() #draws the cursor

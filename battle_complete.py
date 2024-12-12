@@ -108,9 +108,7 @@ class BattleComplete(State):
     def render(self, surface):
         surface.fill(self.game.PURPLE)
         surface.blit(self.header, self.header_rect)
-        surface.blit(self.coin_image, self.coin_rect)
         surface.blit(self.xp_label, self.xp_label_rect)
-        surface.blit(self.coins_earned, self.coins_earned_rect)
         surface.blit(self.xp_earned, self.xp_earned_rect)
         surface.blit(self.space, self.space_rect)
         surface.blit(self.next, self.next_rect)
