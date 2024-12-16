@@ -1,4 +1,3 @@
-import json
 import pygame
 from title import Title
 import config
