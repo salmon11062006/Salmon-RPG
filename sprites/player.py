@@ -56,8 +56,8 @@ class Player(pygame.sprite.Sprite):
         self.speed = 200 #movespeed
         #player inventory for battle
         self.inventory = {
-            'Health': 3,
-            'Mana': 3,
+            'Health': 5,
+            'Mana': 5,
             'Weapon': [] #i also had no time for weapons :(
         }
         self.weapon = None #no weapons :(

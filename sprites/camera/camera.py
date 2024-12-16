@@ -5,17 +5,18 @@ class Camera(pygame.sprite.Group):
         super().__init__()
         self.display_surface = pygame.display.get_surface()
         self.offset = pygame.math.Vector2()
-        self.camera_borders = {'left': 200, 'right': 200, 'top': 100, 'bottom': 100}
+        self.camera_borders = {'left': 200, 'right': 200, 'top': 100, 'bottom': 100} #sizes
         l = self.camera_borders['left']
         t = self.camera_borders['top']
         w = self.display_surface.get_size()[0] - (self.camera_borders['left'] + self.camera_borders['right'])
         h = self.display_surface.get_size()[1] - (self.camera_borders['top'] + self.camera_borders['bottom'])
-        self.camera_rect = pygame.Rect(l,t,w,h)
+        self.camera_rect = pygame.Rect(l,t,w,h) #camera rect initilization
 
     def box_target_camera(self, target):
         self.offset.x = self.camera_rect.left - self.camera_borders['left']
         self.offset.y = self.camera_rect.top - self.camera_borders['top']
         
+        #check for collision with camera borders
         if target.rect.left < self.camera_rect.left:
             self.camera_rect.left = target.rect.left
         if target.rect.right > self.camera_rect.right:
