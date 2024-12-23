@@ -10,17 +10,17 @@ Installation
 
 Clone the repository:
 
-+git clone https://github.com/salmon11062006/Salmon-RPG
++ git clone https://github.com/salmon11062006/Salmon-RPG
 
-+cd salmon-rpg
++ cd salmon-rpg
 
 Install the required dependencies:
 
-+pip install pygame pygame-widgets pytmx
++ pip install pygame pygame-widgets pytmx
 
 Run the game:
 
-+python main.py
++ python main.py
 
 Usage
 
