@@ -22,7 +22,7 @@ Run the game:
 
 + python main.py
 
-Usage
+How to play the game:
 
 Use the arrow keys or W, A, S, D to move the player character.
 Press Enter to interact with menus and confirm actions.
