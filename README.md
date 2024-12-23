@@ -10,7 +10,8 @@ Installation
 
 Clone the repository:
 
-git clone https://github.com/yourusername/salmon-rpg.git
+git clone https://github.com/salmon11062006/Salmon-RPG
+
 cd salmon-rpg
 
 Install the required dependencies:
