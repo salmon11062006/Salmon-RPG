@@ -8,22 +8,12 @@ Table of Contents
 
 Installation
 
-Clone the repository:
-
-+ git clone https://github.com/salmon11062006/Salmon-RPG
-
-+ cd salmon-rpg
-
-Install the required dependencies:
-
+1. Clone the Repository
+2. Install the required dependencies:
 + pip install pygame pygame-widgets pytmx
-
-Run the game:
-
-+ python main.py
+3. Run the game
 
 How to play the game:
-
 Use the arrow keys or W, A, S, D to move the player character.
 Press Enter to interact with menus and confirm actions.
 Use the mouse to interact with buttons in the character creation screen.
