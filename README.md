@@ -1,4 +1,4 @@
-Salmon RPG
+#Salmon RPG
 
 Salmon RPG is a simple role-playing game built using Python and Pygame. The game features a player character that can move around a map, engage in battles with enemies, and level up by gaining experience points.
 
@@ -10,8 +10,7 @@ Installation
 
 1. Clone the Repository
 
-2. Install the required dependencies:
-+ pip install pygame pygame-widgets pytmx
+2. Install the required dependencies: pip install pygame pygame-widgets pytmx
 
 3. Run the game on main.py
 
@@ -20,4 +19,5 @@ How to play the game:
 + Press Enter to interact with menus and confirm actions.
 + Use the mouse to interact with buttons in the character creation screen.
 
-Your main objective in this game is to level up. The current max level you can reach is 3.
+Objective:
++ Your main objective in this game is to level up. The current max level you can reach is 3.
