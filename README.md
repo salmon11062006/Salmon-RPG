@@ -13,7 +13,7 @@ Installation
 2. Install the required dependencies:
 + pip install pygame pygame-widgets pytmx
 
-3. Run the game
+3. Run the game on main.py
 
 How to play the game:
 Use the arrow keys or W, A, S, D to move the player character.
