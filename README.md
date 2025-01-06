@@ -15,9 +15,9 @@ Installation
 3. Run the game on main.py
 
 How to play the game:
-+ Use the arrow keys or W, A, S, D to move the player character.
++ Use the arrow keys or W, A, S, D to move the player character and to interact with the title/battle screen buttons.
 + Press Enter to interact with menus and confirm actions.
-+ Use the mouse to interact with buttons in the character creation screen.
++ Use the mouse to interact with buttons in the character creation screen. (note that the only use for the mouse is for the character creation screen)
 
 Objective:
 + Your main objective in this game is to level up. The current max level you can reach is 3.
