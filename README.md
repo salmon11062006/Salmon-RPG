@@ -10,7 +10,7 @@ Installation
 
 1. Clone the Repository
 
-2. Install the required dependencies
+2. Install the required dependencies:
 + pip install pygame pygame-widgets pytmx
 
 3. Run the game
