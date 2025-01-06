@@ -5,8 +5,9 @@ Salmon RPG is a simple role-playing game built using Python and Pygame. The game
 Table of Contents
 1. Installation
 2. Usage
+3. Game Objective
 
-Installation
+Installation:
 
 1. Clone the Repository
 
@@ -14,7 +15,7 @@ Installation
 
 3. Run the game on main.py
 
-How to play the game:
+Usage:
 + Use the arrow keys or W, A, S, D to move the player character and to interact with the title/battle screen buttons.
 + Press Enter to interact with menus and confirm actions.
 + Use the mouse to interact with buttons in the character creation screen. (note that the only use for the mouse is in the character creation screen)
