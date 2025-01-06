@@ -1,4 +1,4 @@
-#Salmon RPG
+# Salmon RPG
 
 Salmon RPG is a simple role-playing game built using Python and Pygame. The game features a player character that can move around a map, engage in battles with enemies, and level up by gaining experience points.
 
