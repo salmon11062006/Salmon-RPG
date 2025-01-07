@@ -24,8 +24,6 @@ class Game():
         self.player = None #initial player is none
         self.state_stack = [] #state stack
         self.dt = 0 #delta time for animations and such
-        self.map_width = 1024 #map width
-        self.map_height = 1024 #map height
 
         #below are the list of keys that you can use
         self.actions = {
