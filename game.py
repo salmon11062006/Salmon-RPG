@@ -9,7 +9,8 @@ class Game():
         self.DISPLAY = pygame.Surface((config.DISPLAY_W, config.DISPLAY_H)) #setting the display size
         self.WINDOW = pygame.display.set_mode(((config.DISPLAY_W, config.DISPLAY_H))) #setting the window size
         #bunch of colors, should be in config but i put it here and was too lazy to move them
-        self.BLACK, self.WHITE, self.PURPLE, self.GREY, self.YELLOW, self.GREEN = (0, 0, 0), (255, 255, 255), (135, 92, 242), (199, 200, 201), (234, 237, 183), (19, 173, 55)
+        self.BLACK, self.WHITE, self.PURPLE, self.GREY, self.YELLOW, self.GREEN = (
+            0, 0, 0), (255, 255, 255), (135, 92, 242), (199, 200, 201), (234, 237, 183), (19, 173, 55)
         self.main_menu = Title(self, 'Title') #creating the main menu
         self.clock = pygame.time.Clock() #fps
         self.fading = None #fade out transition
