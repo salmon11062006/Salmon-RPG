@@ -9,7 +9,8 @@ class Title(State, Menu):
         Menu.__init__(self,game)
 
         self.open = False
-        self.image = pygame.transform.scale(pygame.image.load('assets/swordtitle.png'), (config.DISPLAY_W, config.DISPLAY_H))
+        self.image = pygame.transform.scale(pygame.image.load('assets/swordtitle.png'), (
+            config.DISPLAY_W, config.DISPLAY_H))
         self.rect = self.image.get_rect(center=(self.mid_w, self.mid_h))
         self.font = pygame.font.Font('assets/8-bit-hud.ttf', 20)
 

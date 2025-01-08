@@ -16,14 +16,19 @@ class CreateCharacter(State, Menu):
         self.font = pygame.font.Font('assets/8-bit-hud.ttf', 15) 
         self.font2 = pygame.font.Font('assets/8-bit-hud.ttf', 25)
         self.font3 = pygame.font.Font('assets/8-bit-hud.ttf', 10)
-        self.image = pygame.transform.scale(pygame.image.load('assets/book_middle.png'), (config.DISPLAY_W, config.DISPLAY_H))
+        self.image = pygame.transform.scale(pygame.image.load('assets/book_middle.png'), (
+            config.DISPLAY_W, config.DISPLAY_H))
         self.rect = self.image.get_rect(center=(self.mid_w, self.mid_h))
         self.name_text = self.font2.render('Name:', True, self.game.BLACK)
         self.name_rect = self.name_text.get_rect(topleft=(self.mid_w - 170, 50))
-        self.textbox = TextBox(self.game.WINDOW, self.mid_w + 15, self.mid_h - 170, 200, 70, fontSize=50, borderColour=self.game.GREY, textColour=self.game.BLACK, colour=self.game.YELLOW, radius=10, borderThickness=5, font=self.font)
-        self.plus_img = pygame.transform.scale(pygame.image.load('assets/statsarrow.png').convert_alpha(), (64, 64))
+        self.textbox = TextBox(self.game.WINDOW, self.mid_w + 15, self.mid_h - 170, 200, 70, fontSize=50, 
+                               borderColour=self.game.GREY, textColour=self.game.BLACK, 
+                               colour=self.game.YELLOW, radius=10, borderThickness=5, font=self.font)
+        self.plus_img = pygame.transform.scale(pygame.image.load(
+            'assets/statsarrow.png').convert_alpha(), (64, 64))
         self.minus_img = pygame.transform.flip(self.plus_img, True, False)
-        self.number_img = pygame.transform.scale(pygame.image.load('assets/statsbox.png').convert_alpha(), (64, 64))
+        self.number_img = pygame.transform.scale(pygame.image.load(
+            'assets/statsbox.png').convert_alpha(), (64, 64))
         self.set_text = self.font2.render('Stat:', True, self.game.BLACK)
         self.set_rect = self.set_text.get_rect(topleft=(self.mid_w - 170, 120))
         self.points_text = self.font3.render('Points remaining: ', True, self.game.BLACK)
