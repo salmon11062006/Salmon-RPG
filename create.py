@@ -47,7 +47,8 @@ class CreateCharacter(State, Menu):
         self.eru_points = 20 #initial erudition points
         self.agi_points = 10 #initial agility points
 
-        self.points_disp = self.font2.render(f'{self.points}', True, self.game.BLACK) #blitting the points remaining
+        self.points_disp = self.font2.render(
+            f'{self.points}', True, self.game.BLACK) #blitting the points remaining
         self.points_rect = self.points_disp.get_rect(center=(self.points_text_rect.centerx, 260))
 
         #str point container and buttons
@@ -223,7 +224,8 @@ class CreateCharacter(State, Menu):
 
                     if self.start_button.collidepoint(pos):
                         if self.points == 0 and self.textbox.getText != '':
-                            self.game.salmonella = Salmonella(self.game, 'Salmonella') #creating the salmonella world
+                            self.game.salmonella = Salmonella(self.game, 
+                                                              'Salmonella') #creating the salmonella world
                             self.game.next_state = self.game.salmonella #transition to the salmonella world
                             self.game.playing = True
                             #player stats
@@ -234,7 +236,8 @@ class CreateCharacter(State, Menu):
                                 'ERU': self.eru_points,
                                 'AGI': self.agi_points
                             }
-                            self.game.next_state.setup_player(self.game.next_state.player_start, self.textbox.getText(), stats)
+                            self.game.next_state.setup_player(
+                                self.game.next_state.player_start, self.textbox.getText(), stats)
                             self.game.next() #transition to the next state
                         elif self.points > 0:
                             #funny thing i added
