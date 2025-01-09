@@ -56,7 +56,7 @@ class Salmonella(State):
         map_data = pytmx.load_pygame('assets/map.tmx')
         self.player_setup = True
         for obj in map_data.get_layer_by_name('Player'):
-            if obj.name == 'Game Start':
+            if obj.name == 'Game Start': 
                 self.player_start = (obj.x, obj.y)
                 self.player = Player(pos, self.game, self.all_sprites, self.collision_sprites, name, stats)
 

@@ -19,23 +19,30 @@ class Battle(State, Menu):
         self.player_image = pygame.transform.scale(self.player.image, (256,256))
         self.player_flip =  pygame.transform.flip(self.player_image, True, False)
         self.player_rect = self.player_flip.get_rect(bottomleft=(0, config.DISPLAY_H + 20))
-        self.player_banner = pygame.transform.scale(pygame.image.load('assets/ui-banner.png').convert_alpha(), (500, 40))
-        self.enemy_banner = pygame.transform.scale(pygame.image.load('assets/ui-banner.png').convert_alpha(), (500, 40))
+        self.player_banner = pygame.transform.scale(
+            pygame.image.load('assets/ui-banner.png').convert_alpha(), (500, 40))
+        self.enemy_banner = pygame.transform.scale(
+            pygame.image.load('assets/ui-banner.png').convert_alpha(), (500, 40))
         
         #more image loading
         self.player_banner_rect = self.player_banner.get_rect(topleft=(20, 50))
         self.enemy_banner_rect = self.enemy_banner.get_rect(topleft=self.player_banner_rect.bottomleft)
-        self.lunge_img = pygame.transform.scale(pygame.image.load('assets/ui-banner2.png').convert_alpha(), (150, 50))
-        self.heavystrike_img = pygame.transform.scale(pygame.image.load('assets/ui-banner2.png').convert_alpha(), (150, 50))
-        self.fireball_img = pygame.transform.scale(pygame.image.load('assets/ui-banner2.png').convert_alpha(), (150, 50))
-        self.shieldthrow_img = pygame.transform.scale(pygame.image.load('assets/ui-banner2.png').convert_alpha(), (150, 50))
+        self.lunge_img = pygame.transform.scale(
+            pygame.image.load('assets/ui-banner2.png').convert_alpha(), (150, 50))
+        self.heavystrike_img = pygame.transform.scale(
+            pygame.image.load('assets/ui-banner2.png').convert_alpha(), (150, 50))
+        self.fireball_img = pygame.transform.scale(
+            pygame.image.load('assets/ui-banner2.png').convert_alpha(), (150, 50))
+        self.shieldthrow_img = pygame.transform.scale(
+            pygame.image.load('assets/ui-banner2.png').convert_alpha(), (150, 50))
 
         #even more image loading related stuff(this time for the rectangles, to be used for positioning)
         self.lunge_rect = self.lunge_img.get_rect(bottomleft=(40, self.player_banner_rect.centery + 320))
         self.heavystrike_rect = self.heavystrike_img.get_rect(bottomleft=self.lunge_rect.bottomright)
         self.fireball_rect = self.fireball_img.get_rect(bottomleft=self.heavystrike_rect.bottomright)
         self.shieldthrow_rect = self.shieldthrow_img.get_rect(bottomleft=self.fireball_rect.bottomright)
-        self.ribbon_image = pygame.transform.scale(pygame.image.load('assets/ui-banner.png').convert_alpha(), (150, 50))
+        self.ribbon_image = pygame.transform.scale(pygame.image.load(
+            'assets/ui-banner.png').convert_alpha(), (150, 50))
         self.font = pygame.font.Font('assets/8-bit-hud.ttf', 15)
         self.font2 = pygame.font.Font('assets/8-bit-hud.ttf', 5)
 
@@ -45,8 +52,10 @@ class Battle(State, Menu):
         self.fireball_text = self.font2.render('Fireball 5mp', True, self.game.BLACK)
         self.shieldthrow_text = self.font2.render('Shield Throw 3mp', True, self.game.BLACK)
         self.melee_text = self.font2.render('Melee Attack', True, self.game.BLACK)
-        self.potion_text = self.font2.render(f'Health Potion: {self.player.inventory["Health"]}', True, self.game.BLACK)
-        self.mana_text = self.font2.render(f'Mana Potion: {self.player.inventory["Mana"]}', True, self.game.BLACK)
+        self.potion_text = self.font2.render(
+            f'Health Potion: {self.player.inventory["Health"]}', True, self.game.BLACK)
+        self.mana_text = self.font2.render(
+            f'Mana Potion: {self.player.inventory["Mana"]}', True, self.game.BLACK)
         self.flee_text = self.font2.render('Flee', True, self.game.BLACK)
 
         #to position the text
