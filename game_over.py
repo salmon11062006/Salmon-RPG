@@ -1,5 +1,4 @@
 import pygame
-import config
 from menu import Menu
 from state import State
 
