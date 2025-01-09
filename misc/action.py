@@ -5,7 +5,7 @@ class Action:
     def __init__(self, player):
         self.player = player #refers to the player
 
-#controls the damage amount and mp cost of each spell
+#controls the mp cost of each spell
 class Spell(Action):
     def __init__(self, type, player):
         super().__init__(player)
