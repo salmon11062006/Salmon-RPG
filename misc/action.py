@@ -57,7 +57,8 @@ class Attack(Action):
     def use(self):
         #wanted to add a weapon system, but didn't have enough time to implement :(
         if self.player.weapon:
-            amount = self.player.weapon.damage + randint(int(self.player.stats['STR'] / 2 - 3), int(self.player.stats['STR'] / 2 + 3))
+            amount = self.player.weapon.damage + randint(
+                int(self.player.stats['STR'] / 2 - 3), int(self.player.stats['STR'] / 2 + 3))
         else:
             #melee attacks are scaled off of STRENGTH
             amount = int(randint(int(self.player.stats['STR'] / 2 - 3), int(self.player.stats['STR'] / 2 + 3)))
